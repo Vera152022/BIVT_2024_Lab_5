@@ -174,35 +174,26 @@ public class Program
         
         int index1 = FindDiagonalMaxIndex(B);
         int index2 = FindDiagonalMaxIndex(C);
+
+        B = index(B, index1);
+        C = index(C, index2);
+        // end
+    }
+    int[,] index(int[,] B, int index1)
+    {
         int[,] new_B = new int[B.GetLength(0) - 1, B.GetLength(1)];
-        int[,] new_C = new int[C.GetLength(0) - 1, C.GetLength(1)];
-        for(int i = 0;i < B.GetLength(0); i++)
+        for (int i = 0; i < B.GetLength(0); i++)
         {
             if (i == index1) i++;
             for (int j = 0; j < B.GetLength(1); j++)
             {
-                if(i < index1)
+                if (i < index1)
                     new_B[i, j] = B[i, j];
                 else
                     new_B[i - 1, j] = B[i, j];
             }
         }
-        for (int i = 0; i < C.GetLength(0); i++)
-        {
-            if (i == index2) i++;
-            for (int j = 0; j < C.GetLength(1); j++)
-            {
-                if (i < index2)
-                    new_C[i, j] = C[i, j];
-                else
-                    new_C[i - 1, j] = C[i, j];
-            }
-        }
-
-        
-        B = new_B;
-        C = new_C;
-        // end
+        return new_B;
     }
     int FindDiagonalMaxIndex(int[,] matrix)
     {
